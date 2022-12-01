@@ -1,0 +1,10 @@
+.posts h1 {
+	font-size: 36px;
+	margin-bottom: 20px;
+}
+
+.posts-group {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}

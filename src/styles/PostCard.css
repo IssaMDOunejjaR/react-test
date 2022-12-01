@@ -1,0 +1,28 @@
+.post-card {
+	width: 100%;
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	margin-bottom: 40px;
+	box-shadow: 1px 1px 10px #ddd;
+}
+
+.post-card h2 {
+	margin-bottom: 15px;
+}
+.post-card p {
+	line-height: 1.4;
+	color: #666;
+}
+
+@media (min-width: 768px) {
+	.post-card {
+		width: 49%;
+	}
+}
+
+@media (min-width: 1100px) {
+	.post-card {
+		width: 31%;
+	}
+}
