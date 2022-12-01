@@ -5,22 +5,31 @@ import PostCard from './PostCard';
 import '../styles/Posts.css';
 
 const Posts = () => {
-	const { data: posts } = useFetch<Post>({
+	const {
+		data: posts,
+		isLoading,
+		isError,
+		error,
+	} = useFetch<Post>({
 		path: 'https://jsonplaceholder.typicode.com/posts',
 	});
-
-	if (!posts) return null;
 
 	return (
 		<section className='posts'>
 			<div className='container'>
 				<h1>Posts</h1>
 
-				<div className='posts-group'>
-					{posts.map((post) => (
-						<PostCard key={post.id} data={post} />
-					))}
-				</div>
+				{isLoading && <div className='posts-loading'>Loading...</div>}
+
+				{isError && error}
+
+				{posts && (
+					<div className='posts-group'>
+						{posts.map((post) => (
+							<PostCard key={post.id} data={post} />
+						))}
+					</div>
+				)}
 			</div>
 		</section>
 	);

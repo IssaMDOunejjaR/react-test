@@ -6,18 +6,29 @@ interface Props {
 
 export const useFetch = <T>({ path }: Props) => {
 	const [data, setData] = useState<T[] | null>(null);
+	const [isLoading, setIsLoading] = useState(false);
+	const [isError, setIsError] = useState(false);
+	const [error, setError] = useState('');
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const result = await fetch(path, { method: 'GET' });
+			setIsLoading(true);
 
-			const json = await result.json();
+			try {
+				const result = await fetch(path, { method: 'GET' });
 
-			setData(json);
+				const json = await result.json();
+
+				setData(json);
+			} catch (err) {
+				setIsError(true);
+				setError('Something went wrong!');
+			}
+			setIsLoading(false);
 		};
 
 		fetchData();
 	}, [path]);
 
-	return { data };
+	return { data, isLoading, isError, error };
 };

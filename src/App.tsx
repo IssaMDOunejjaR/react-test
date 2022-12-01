@@ -17,6 +17,8 @@ function App() {
 						</ProtectedRoute>
 					}
 				/>
+
+				<Route path='*' element={<div>Not Found</div>} />
 			</Routes>
 		</>
 	);
